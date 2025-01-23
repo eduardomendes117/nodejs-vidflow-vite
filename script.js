@@ -3,12 +3,13 @@ import axios from "axios";
 const containerVideos = document.querySelector(".videos__container");
 
 async function buscarEMostrarVideos() {
-  const urlVideos = import.meta.env.VITE_URL_VIDEOS;
-  console.log(import.meta.env.PROD);
-  console.log(urlVideos);
+  const urlVideos = import.meta.env.PROD
+    ? "https://gist.githubusercontent.com/antonio-evaldo/e8a63621b51c883931eb3fa3a3eca990/raw/12f5c46ee6dd00d03c051adadaf341e06452cea0/videos.txt"
+    : "http://localhost:3000/videos";
 
   try {
     const busca = await axios.get(urlVideos);
+
     const videos = busca.data;
 
     videos.forEach((video) => {
